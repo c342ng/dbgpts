@@ -29,34 +29,50 @@ CHECK_RESULT_SYSTEM_MESSAGE = (
 class MySummarizerAgent(ConversableAgent):
     profile: ProfileConfig = ProfileConfig(
         # The name of the agent
-        name="Aristotle",
+        name=DynConfig(
+            "Aristotle",
+            category="agent",
+            key="dbgpt_agent_MySummarizerAgent_profile_name",
+        ),
         # The role of the agent
-        role="MySummarizer",
+        role=DynConfig(
+            "MySummarizer",
+            category="agent",
+            key="dbgpt_agent_MySummarizerAgent_profile_role",
+        ),
         # The core functional goals of the agent tell LLM what it can do with it.
-        goal=(
+        goal=DynConfig(
             "Summarize answer summaries based on user questions from provided "
             "resource information or from historical conversation memories."
+            category="agent",
+            key="dbgpt_agent_MySummarizerAgent_profile_goal",
         ),
         # Introduction and description of the agent, used for task assignment and
         # display. If it is empty, the goal content will be used.
-        desc=(
+        desc=DynConfig(
             "You can summarize provided text content according to user's questions"
             " and output the summarization."
+            category="agent",
+            key="dbgpt_agent_MySummarizerAgent_profile_desc",
         ),
-        constraints=[
-            "Prioritize the summary of answers to user questions from the improved "
-            "resource text. If no relevant information is found, summarize it from "
-            "the historical dialogue memory given. It is forbidden to make up your "
-            "own.",
-            "You need to first detect user's question that you need to answer with your"
-            " summarization.",
-            "Extract the provided text content used for summarization.",
-            "Then you need to summarize the extracted text content.",
-            "Output the content of summarization ONLY related to user's question. The "
-            "output language must be the same to user's question language.",
-            "If you think the provided text content is not related to user questions "
-            "at all, ONLY output '{{ not_related_message }}'!!.",
-        ],
+        constraints=DynConfig(
+            [
+                "Prioritize the summary of answers to user questions from the improved "
+                "resource text. If no relevant information is found, summarize it from "
+                "the historical dialogue memory given. It is forbidden to make up your "
+                "own.",
+                "You need to first detect user's question that you need to answer with your"
+                " summarization.",
+                "Extract the provided text content used for summarization.",
+                "Then you need to summarize the extracted text content.",
+                "Output the content of summarization ONLY related to user's question. The "
+                "output language must be the same to user's question language.",
+                "If you think the provided text content is not related to user questions "
+                "at all, ONLY output '{{ not_related_message }}'!!.",
+            ],
+            category="agent",
+            key="dbgpt_agent_MySummarizerAgent_profile_constraints",
+        ),
     )
 
     def __init__(self, **kwargs):
