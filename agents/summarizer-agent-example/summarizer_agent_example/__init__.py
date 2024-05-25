@@ -42,14 +42,14 @@ class MySummarizerAgent(ConversableAgent):
         ),
         # The core functional goals of the agent tell LLM what it can do with it.
         goal=DynConfig(
-            "Summarize answer summaries based on user questions from provided resource information or from historical conversation memories."
+            "Summarize answer summaries based on user questions from provided resource information or from historical conversation memories.",
             category="agent",
             key="dbgpt_agent_MySummarizerAgent_profile_goal",
         ),
         # Introduction and description of the agent, used for task assignment and
         # display. If it is empty, the goal content will be used.
         desc=DynConfig(
-            "You can summarize provided text content according to user's questions and output the summarization."
+            "You can summarize provided text content according to user's questions and output the summarization.",
             category="agent",
             key="dbgpt_agent_MySummarizerAgent_profile_desc",
         ),
